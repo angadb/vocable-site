@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocable — Daily Vocabulary</title>
+    <style>
+        :root {
+            --teal: #2A9D8F;
+            --cream: #FCFFD9;
+            --dark: #1A1A2E;
+            --salmon: #E76F51;
+            --light-teal: rgba(42, 157, 143, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: var(--cream);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 80px 0 48px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-style: italic;
+            font-weight: 700;
+            color: var(--teal);
+            margin-bottom: 12px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #555;
+            font-style: italic;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 0 60px;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #555;
+            max-width: 540px;
+            margin: 0 auto 32px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 0 0 60px;
+        }
+
+        .feature {
+            background: white;
+            border: 1px solid var(--light-teal);
+            border-radius: 16px;
+            padding: 28px 24px;
+        }
+
+        .feature h3 {
+            font-size: 1.05rem;
+            font-style: italic;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .links {
+            text-align: center;
+            padding: 40px 0 80px;
+            border-top: 1px solid rgba(42, 157, 143, 0.2);
+        }
+
+        .links a {
+            color: var(--teal);
+            text-decoration: none;
+            margin: 0 16px;
+            font-size: 0.95rem;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px 0;
+            font-size: 0.85rem;
+            color: #999;
+            border-top: 1px solid rgba(42, 157, 143, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            .features { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Vocable</h1>
+            <p>A word a day, beautifully delivered.</p>
+        </header>
+
+        <section class="hero">
+            <h2>Build your vocabulary, one day at a time</h2>
+            <p>Vocable delivers a curated word each day with definitions, examples, and etymology. Track your streaks, collect favorites, and quiz yourself — all in a beautiful editorial design.</p>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <h3>Daily Words</h3>
+                <p>A new word every day with definitions fetched from the dictionary, complete with examples and phonetics.</p>
+            </div>
+            <div class="feature">
+                <h3>Streaks & Stats</h3>
+                <p>Track your learning streak, quiz accuracy, and unlock 39 achievements as you grow your vocabulary.</p>
+            </div>
+            <div class="feature">
+                <h3>Recall Quizzes</h3>
+                <p>Test your memory with flashcard quizzes built from words you've learned. Stay sharp.</p>
+            </div>
+            <div class="feature">
+                <h3>Your Library</h3>
+                <p>Like and collect words. Search your history. Export your data anytime.</p>
+            </div>
+        </section>
+
+        <section class="links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Angad Singh Bedi. Made with care.</p>
+        </footer>
+    </div>
+</body>
+</html>
