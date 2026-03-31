@@ -4,162 +4,587 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocable — Daily Vocabulary</title>
+    <meta name="description" content="A beautiful vocabulary app that delivers a new word each day. Science-backed learning with spaced repetition, active recall quizzes, and streak tracking.">
+    <meta property="og:title" content="Vocable — Daily Vocabulary">
+    <meta property="og:description" content="A word a day, beautifully delivered. Build your vocabulary with science-backed techniques.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://angadb.github.io/vocable-site/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --teal: #2A9D8F;
+            --teal-dark: #21867A;
             --cream: #FCFFD9;
+            --cream-soft: #FAFCE8;
             --dark: #1A1A2E;
             --salmon: #E76F51;
-            --light-teal: rgba(42, 157, 143, 0.15);
+            --light-teal: rgba(42, 157, 143, 0.12);
+            --card-shadow: 0 8px 32px rgba(42, 157, 143, 0.08), 0 2px 8px rgba(0,0,0,0.04);
+            --card-shadow-hover: 0 12px 40px rgba(42, 157, 143, 0.14), 0 4px 12px rgba(0,0,0,0.06);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: 'Source Serif 4', Georgia, serif;
             background: var(--cream);
             color: var(--dark);
             line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 0 24px;
+        /* Subtle background texture */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 0%, rgba(42, 157, 143, 0.06) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 100%, rgba(231, 111, 81, 0.04) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: -1;
         }
 
-        header {
-            padding: 80px 0 48px;
-            text-align: center;
-        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 28px; }
 
-        header h1 {
-            font-size: 3rem;
-            font-style: italic;
+        /* ---- NAV ---- */
+        nav {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: var(--teal);
-            margin-bottom: 12px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: #555;
             font-style: italic;
+            color: var(--teal);
+            text-decoration: none;
         }
+        nav .nav-links a {
+            font-size: 0.85rem;
+            color: #777;
+            text-decoration: none;
+            margin-left: 24px;
+            transition: color 0.2s;
+        }
+        nav .nav-links a:hover { color: var(--teal); }
 
+        /* ---- HERO ---- */
         .hero {
             text-align: center;
-            padding: 40px 0 60px;
+            padding: 80px 0 64px;
         }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--light-teal);
+            border: 1px solid rgba(42, 157, 143, 0.2);
+            color: var(--teal);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--dark);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .hero h1 span { color: var(--teal); }
+        .hero p {
+            font-size: 1.15rem;
+            color: #666;
+            max-width: 520px;
+            margin: 0 auto 36px;
+            font-style: italic;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--teal);
+            color: white;
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+            box-shadow: 0 4px 16px rgba(42, 157, 143, 0.3);
+        }
+        .hero-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
+        .hero-cta svg { width: 18px; height: 18px; fill: white; }
 
-        .hero h2 {
-            font-size: 1.8rem;
+        /* ---- WORD PREVIEW ---- */
+        .word-preview {
+            max-width: 400px;
+            margin: 48px auto 0;
+            background: white;
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(42, 157, 143, 0.08);
+            text-align: left;
+        }
+        .word-preview .word {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+        .word-preview .phonetic {
+            font-size: 0.9rem;
+            color: #999;
             font-style: italic;
             margin-bottom: 16px;
         }
-
-        .hero p {
-            font-size: 1.05rem;
-            color: #555;
-            max-width: 540px;
-            margin: 0 auto 32px;
+        .word-preview .pos {
+            display: inline-block;
+            background: var(--light-teal);
+            color: var(--teal);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-bottom: 12px;
+        }
+        .word-preview .definition {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .word-preview .example {
+            font-size: 0.9rem;
+            color: #888;
+            font-style: italic;
+            padding-left: 16px;
+            border-left: 2px solid var(--light-teal);
         }
 
-        .features {
+        /* ---- SECTION ---- */
+        section { padding: 60px 0; }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--teal);
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: #666;
+            max-width: 540px;
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        /* ---- FEATURES GRID ---- */
+        .features-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            padding: 0 0 60px;
         }
-
-        .feature {
+        .feature-card {
             background: white;
-            border: 1px solid var(--light-teal);
-            border-radius: 16px;
+            border: 1px solid rgba(42, 157, 143, 0.08);
+            border-radius: 20px;
             padding: 28px 24px;
+            box-shadow: var(--card-shadow);
+            transition: box-shadow 0.25s, transform 0.2s;
         }
-
-        .feature h3 {
-            font-size: 1.05rem;
+        .feature-card:hover {
+            box-shadow: var(--card-shadow-hover);
+            transform: translateY(-2px);
+        }
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--light-teal);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .feature-icon svg { width: 22px; height: 22px; fill: var(--teal); }
+        .feature-card h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.1rem;
             font-style: italic;
-            color: var(--teal);
+            color: var(--dark);
             margin-bottom: 8px;
         }
-
-        .feature p {
+        .feature-card p {
             font-size: 0.9rem;
             color: #666;
+            line-height: 1.6;
         }
 
-        .links {
+        /* ---- SCIENCE SECTION ---- */
+        .science {
+            background: white;
+            border: 1px solid rgba(42, 157, 143, 0.08);
+            border-radius: 24px;
+            padding: 48px 40px;
+            box-shadow: var(--card-shadow);
+        }
+        .science-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 32px;
+            margin-top: 36px;
+        }
+        .science-item {
             text-align: center;
-            padding: 40px 0 80px;
-            border-top: 1px solid rgba(42, 157, 143, 0.2);
         }
-
-        .links a {
-            color: var(--teal);
-            text-decoration: none;
-            margin: 0 16px;
-            font-size: 0.95rem;
+        .science-item .icon-ring {
+            width: 64px;
+            height: 64px;
+            background: var(--light-teal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
         }
-
-        .links a:hover {
-            text-decoration: underline;
+        .science-item .icon-ring svg { width: 28px; height: 28px; fill: var(--teal); }
+        .science-item h4 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1rem;
+            font-style: italic;
+            margin-bottom: 8px;
         }
-
-        footer {
-            text-align: center;
-            padding: 24px 0;
+        .science-item p {
             font-size: 0.85rem;
-            color: #999;
-            border-top: 1px solid rgba(42, 157, 143, 0.1);
+            color: #666;
+            line-height: 1.55;
         }
 
-        @media (max-width: 600px) {
-            header h1 { font-size: 2.2rem; }
-            .features { grid-template-columns: 1fr; }
+        /* ---- PREMIUM SECTION ---- */
+        .premium-card {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+            border-radius: 24px;
+            padding: 48px 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .premium-card::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .premium-card .section-label { color: rgba(255,255,255,0.7); }
+        .premium-card .section-title { color: white; }
+        .premium-card .section-subtitle { color: rgba(255,255,255,0.8); }
+        .premium-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 8px;
+        }
+        .premium-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .premium-feature svg { width: 20px; height: 20px; fill: rgba(255,255,255,0.9); flex-shrink: 0; margin-top: 2px; }
+        .premium-feature div h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .premium-feature div p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* ---- HONEST BANNER ---- */
+        .honest {
+            text-align: center;
+            padding: 48px 0;
+        }
+        .honest-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 16px;
+        }
+        .honest h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.6rem;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+        .honest p {
+            font-size: 1rem;
+            color: #666;
+            max-width: 480px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        /* ---- FOOTER ---- */
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(42, 157, 143, 0.12);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        footer .copy { font-size: 0.82rem; color: #aaa; }
+        footer .footer-links a {
+            font-size: 0.82rem;
+            color: #999;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        footer .footer-links a:hover { color: var(--teal); }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2.6rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .science-grid { grid-template-columns: 1fr; gap: 24px; }
+            .premium-features { grid-template-columns: 1fr; }
+            .science { padding: 32px 24px; }
+            .premium-card { padding: 32px 24px; }
+            footer { flex-direction: column; text-align: center; }
+            footer .footer-links { margin: 0; }
+            footer .footer-links a { margin: 0 10px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Vocable</h1>
-            <p>A word a day, beautifully delivered.</p>
-        </header>
+        <!-- Nav -->
+        <nav>
+            <a href="index.html" class="logo">Vocable</a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#science">Science</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </nav>
 
+        <!-- Hero -->
         <section class="hero">
-            <h2>Build your vocabulary, one day at a time</h2>
-            <p>Vocable delivers a curated word each day with definitions, examples, and etymology. Track your streaks, collect favorites, and quiz yourself — all in a beautiful editorial design.</p>
-        </section>
+            <div class="hero-badge">
+                <!-- sun.max.fill -->
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><circle cx="12" cy="12" r="5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></g></svg>
+                A new word every morning
+            </div>
 
-        <section class="features">
-            <div class="feature">
-                <h3>Daily Words</h3>
-                <p>A new word every day with definitions fetched from the dictionary, complete with examples and phonetics.</p>
-            </div>
-            <div class="feature">
-                <h3>Streaks & Stats</h3>
-                <p>Track your learning streak, quiz accuracy, and unlock 39 achievements as you grow your vocabulary.</p>
-            </div>
-            <div class="feature">
-                <h3>Recall Quizzes</h3>
-                <p>Test your memory with flashcard quizzes built from words you've learned. Stay sharp.</p>
-            </div>
-            <div class="feature">
-                <h3>Your Library</h3>
-                <p>Like and collect words. Search your history. Export your data anytime.</p>
+            <h1>Build your<br>vocabulary, <span>beautifully.</span></h1>
+            <p>One curated word a day with definitions, examples, and quizzes. Science-backed learning in an editorial design.</p>
+
+            <!-- Inline word card preview -->
+            <div class="word-preview">
+                <div class="word">serendipity</div>
+                <div class="phonetic">/ˌsɛr.ənˈdɪp.ɪ.ti/</div>
+                <span class="pos">noun</span>
+                <p class="definition">The occurrence of events by chance in a happy or beneficial way.</p>
+                <p class="example">"A fortunate stroke of serendipity brought them together."</p>
             </div>
         </section>
 
-        <section class="links">
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms & Conditions</a>
+        <!-- Features -->
+        <section id="features">
+            <div class="section-label">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--teal)"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                Features
+            </div>
+            <h2 class="section-title">Everything you need,<br>nothing you don't.</h2>
+            <p class="section-subtitle">No ads. No tracking. No data collection. Just words and the tools to learn them.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <!-- sun -->
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><g stroke="var(--teal)" stroke-width="2" stroke-linecap="round" fill="none"><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></g></svg>
+                    </div>
+                    <h3>Daily Words</h3>
+                    <p>A hand-curated word every morning with definitions, phonetics, examples, synonyms, and antonyms.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <!-- flame -->
+                        <svg viewBox="0 0 24 24"><path d="M12 23c-4.97 0-9-3.58-9-8 0-3.19 2.13-6.17 3.38-7.76.42-.53 1.22-.43 1.5.17.6 1.27 1.57 2.1 2.62 2.1.75 0 1.22-.4 1.22-.4S10 7 10 4.5c0-1.67.83-3.17 2.12-4.13.5-.37 1.2-.1 1.36.5C14.2 3.5 16 5.5 17.5 8c1.5 2.5 2.5 5.5 2.5 7 0 4.42-4.03 8-8 8z"/></svg>
+                    </div>
+                    <h3>Streaks & Achievements</h3>
+                    <p>Track your daily learning streak with a freeze mechanic. Unlock 39 achievements across 8 categories.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <!-- book -->
+                        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" fill="none" stroke="var(--teal)" stroke-width="2"/></svg>
+                    </div>
+                    <h3>Recall Quizzes</h3>
+                    <p>Flashcard quizzes from words you've missed. Yesterday's word recall challenge every morning.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <!-- books -->
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="4" height="16" rx="1"/><rect x="9" y="2" width="4" height="18" rx="1"/><rect x="15" y="5" width="4" height="15" rx="1" transform="rotate(-6 17 12)"/></svg>
+                    </div>
+                    <h3>Your Library</h3>
+                    <p>Every word you've seen, liked, or looked up — searchable, exportable, always yours.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <!-- wifi.slash -->
+                        <svg viewBox="0 0 24 24"><path d="M12 20h.01M8.53 16.11a6 6 0 0 1 6.95 0M5.06 12.68a10 10 0 0 1 5.17-2.95M1.59 9.26a14 14 0 0 1 4.88-2.65M12 6a14 14 0 0 1 8.41 2.76M17 8.7a10 10 0 0 1 1.94 1.48" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/><line x1="2" y1="2" x2="22" y2="22" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Works Offline</h3>
+                    <p>Cached definitions available without internet. Look up words you've seen before, even on a plane.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <!-- bell -->
+                        <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Smart Notifications</h3>
+                    <p>Daily word delivery and evening reminders at times you choose. Gentle nudges, never spammy.</p>
+                </div>
+            </div>
         </section>
 
+        <!-- Science -->
+        <section id="science">
+            <div class="science">
+                <div class="section-label">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="var(--teal)"><path d="M9 2v6.59L4.93 17A2 2 0 0 0 6.67 20h10.66a2 2 0 0 0 1.74-3L15 8.59V2" /><line x1="8" y1="2" x2="16" y2="2" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg>
+                    Science-Backed
+                </div>
+                <h2 class="section-title">Designed around how your brain actually learns.</h2>
+                <p class="section-subtitle">Vocable isn't just a word-a-day app. Every feature is built on proven learning science.</p>
+
+                <div class="science-grid">
+                    <div class="science-item">
+                        <div class="icon-ring">
+                            <!-- lightbulb -->
+                            <svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <h4>Spaced Repetition</h4>
+                        <p>Reviewing words at increasing intervals improves long-term retention by up to 200%. Daily notifications and recall challenges are timed to take advantage of this.</p>
+                    </div>
+                    <div class="science-item">
+                        <div class="icon-ring">
+                            <!-- brain -->
+                            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 5 2.1A5.5 5.5 0 0 1 21 9.5a5.5 5.5 0 0 1-3.17 5A5 5 0 0 1 12 19M12 2a7 7 0 0 0-5 2.1A5.5 5.5 0 0 0 3 9.5a5.5 5.5 0 0 0 3.17 5A5 5 0 0 0 12 19M12 2v17" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <h4>Active Recall</h4>
+                        <p>Testing yourself on a word's meaning — rather than passively re-reading it — creates stronger neural pathways. Each successful recall makes the memory more durable.</p>
+                    </div>
+                    <div class="science-item">
+                        <div class="icon-ring">
+                            <!-- clock -->
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--teal)" stroke-width="2"/><polyline points="12 6 12 12 16 14" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round"/></svg>
+                        </div>
+                        <h4>Daily Consistency</h4>
+                        <p>Learning just one word per day builds a micro-habit that compounds over time. Brief, repeated encounters with words dramatically improve retention.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium -->
+        <section>
+            <div class="premium-card">
+                <div class="section-label">Premium</div>
+                <h2 class="section-title">Go further.</h2>
+                <p class="section-subtitle">Support an indie developer and unlock the full experience.</p>
+
+                <div class="premium-features">
+                    <div class="premium-feature">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <div>
+                            <h4>Custom Themes</h4>
+                            <p>Build your own color palette and typography</p>
+                        </div>
+                    </div>
+                    <div class="premium-feature">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <div>
+                            <h4>Data Export</h4>
+                            <p>Download everything as JSON, anytime</p>
+                        </div>
+                    </div>
+                    <div class="premium-feature">
+                        <svg viewBox="0 0 24 24"><path d="M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10z" fill="none" stroke="white" stroke-width="2"/><path d="M16 12l-4-4v8l4-4z" fill="white"/></svg>
+                        <div>
+                            <h4>iCloud Sync</h4>
+                            <p>Your words on every device, seamlessly</p>
+                        </div>
+                    </div>
+                    <div class="premium-feature">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" fill="white"/><rect x="14" y="3" width="7" height="7" rx="1.5" fill="white"/><rect x="3" y="14" width="7" height="7" rx="1.5" fill="white"/><rect x="14" y="14" width="7" height="7" rx="1.5" fill="white"/></svg>
+                        <div>
+                            <h4>Home Screen Widget</h4>
+                            <p>Browse words from your lock screen</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Honest pitch -->
+        <section class="honest">
+            <div class="honest-badge">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="#E76F51"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                Made by one person
+            </div>
+            <h3>No team. No VC. No tracking.</h3>
+            <p>Vocable is built and maintained by a single developer who genuinely loves words. If you enjoy it, a subscription is the best way to say thanks.</p>
+        </section>
+
+        <!-- Footer -->
         <footer>
-            <p>&copy; 2025 Angad Singh Bedi. Made with care.</p>
+            <span class="copy">&copy; 2025 Angad Singh Bedi</span>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="mailto:VocableSupport@icloud.com">Contact</a>
+            </div>
         </footer>
     </div>
 </body>

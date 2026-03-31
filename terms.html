@@ -4,97 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms & Conditions — Vocable</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --teal: #2A9D8F;
             --cream: #FCFFD9;
             --dark: #1A1A2E;
+            --light-teal: rgba(42, 157, 143, 0.12);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: 'Source Serif 4', Georgia, serif;
             background: var(--cream);
             color: var(--dark);
             line-height: 1.8;
         }
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 60px 24px 80px;
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at 20% 0%, rgba(42, 157, 143, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: -1;
         }
-        h1 {
-            font-size: 2.2rem;
+        .container { max-width: 720px; margin: 0 auto; padding: 0 28px; }
+        nav {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 700;
             font-style: italic;
             color: var(--teal);
+            text-decoration: none;
+        }
+        nav .nav-links a {
+            font-size: 0.85rem;
+            color: #777;
+            text-decoration: none;
+            margin-left: 24px;
+            transition: color 0.2s;
+        }
+        nav .nav-links a:hover { color: var(--teal); }
+        .page-header { padding: 60px 0 40px; }
+        .page-header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--dark);
             margin-bottom: 8px;
         }
-        .date {
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 40px;
-        }
-        h2 {
+        .date { font-size: 0.9rem; color: #999; font-style: italic; }
+        .content { padding-bottom: 80px; }
+        .content h2 {
+            font-family: 'Playfair Display', Georgia, serif;
             font-size: 1.3rem;
             font-style: italic;
             color: var(--teal);
-            margin: 32px 0 12px;
+            margin: 36px 0 12px;
         }
-        p, li {
-            font-size: 1rem;
-            color: #444;
-            margin-bottom: 12px;
+        .content p, .content li { font-size: 1rem; color: #444; margin-bottom: 12px; }
+        .content ul { padding-left: 24px; margin-bottom: 12px; }
+        .content a { color: var(--teal); text-decoration: none; }
+        .content a:hover { text-decoration: underline; }
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid rgba(42, 157, 143, 0.12);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
         }
-        ul { padding-left: 24px; margin-bottom: 12px; }
-        a { color: var(--teal); }
-        .back { display: inline-block; margin-bottom: 32px; color: var(--teal); text-decoration: none; font-size: 0.95rem; }
-        .back:hover { text-decoration: underline; }
+        footer .copy { font-size: 0.82rem; color: #aaa; }
+        footer .footer-links a {
+            font-size: 0.82rem;
+            color: #999;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        footer .footer-links a:hover { color: var(--teal); }
+        @media (max-width: 600px) {
+            .page-header h1 { font-size: 2rem; }
+            footer { flex-direction: column; text-align: center; }
+            footer .footer-links a { margin: 0 10px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back">&larr; Back to Vocable</a>
+        <nav>
+            <a href="index.html" class="logo">Vocable</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="privacy.html">Privacy</a>
+            </div>
+        </nav>
 
-        <h1>Terms & Conditions</h1>
-        <p class="date">Effective date: March 31, 2026</p>
+        <div class="page-header">
+            <h1>Terms & Conditions</h1>
+            <p class="date">Effective date: March 31, 2026</p>
+        </div>
 
-        <p>By using Vocable ("the App"), you agree to these terms. Please read them before using the App.</p>
+        <div class="content">
+            <p>By using Vocable ("the App"), you agree to these terms. Please read them before using the App.</p>
 
-        <h2>Use of the App</h2>
-        <p>Vocable is a vocabulary learning app for personal, non-commercial use. You may use the App on any devices you own that are signed into your Apple ID.</p>
+            <h2>Use of the App</h2>
+            <p>Vocable is a vocabulary learning app for personal, non-commercial use. You may use the App on any devices you own that are signed into your Apple ID.</p>
 
-        <h2>Subscriptions</h2>
-        <ul>
-            <li>Vocable offers optional auto-renewing subscriptions ("Vocable Premium") that unlock additional features.</li>
-            <li>Payment is charged to your Apple ID account at confirmation of purchase.</li>
-            <li>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current billing period.</li>
-            <li>You can manage or cancel your subscription in your device's Settings > Apple ID > Subscriptions at any time.</li>
-            <li>Any unused portion of a free trial period is forfeited when you purchase a subscription.</li>
-            <li>Prices are set in App Store Connect and may vary by region. The App displays the actual price from the App Store before purchase.</li>
-        </ul>
+            <h2>Subscriptions</h2>
+            <ul>
+                <li>Vocable offers optional auto-renewing subscriptions ("Vocable Premium") that unlock additional features.</li>
+                <li>Payment is charged to your Apple ID account at confirmation of purchase.</li>
+                <li>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current billing period.</li>
+                <li>You can manage or cancel your subscription in your device's Settings > Apple ID > Subscriptions at any time.</li>
+                <li>Any unused portion of a free trial period is forfeited when you purchase a subscription.</li>
+                <li>Prices are set in App Store Connect and may vary by region. The App displays the actual price from the App Store before purchase.</li>
+            </ul>
 
-        <h2>Content & Definitions</h2>
-        <p>Word definitions are sourced from the <a href="https://dictionaryapi.dev">Free Dictionary API</a>, an open-source project. While I strive to provide accurate content, definitions are provided "as is" and I make no guarantees about their accuracy or completeness. The curated word list is bundled with the App and may be updated in future releases.</p>
+            <h2>Content & Definitions</h2>
+            <p>Word definitions are sourced from the <a href="https://dictionaryapi.dev">Free Dictionary API</a>, an open-source project. While I strive to provide accurate content, definitions are provided "as is" and I make no guarantees about their accuracy or completeness. The curated word list is bundled with the App and may be updated in future releases.</p>
 
-        <h2>Intellectual Property</h2>
-        <p>The App's design, code, and curated word list are the property of Angad Singh Bedi. You may not copy, modify, distribute, or reverse-engineer the App beyond what is permitted by applicable law.</p>
+            <h2>Intellectual Property</h2>
+            <p>The App's design, code, and curated word list are the property of Angad Singh Bedi. You may not copy, modify, distribute, or reverse-engineer the App beyond what is permitted by applicable law.</p>
 
-        <h2>Your Data</h2>
-        <p>Your data belongs to you. The App stores data locally on your device and optionally in your private iCloud account. You can export your data at any time. See the <a href="privacy.html">Privacy Policy</a> for details.</p>
+            <h2>Your Data</h2>
+            <p>Your data belongs to you. The App stores data locally on your device and optionally in your private iCloud account. You can export your data at any time. See the <a href="privacy.html">Privacy Policy</a> for details.</p>
 
-        <h2>Disclaimer of Warranties</h2>
-        <p>The App is provided "as is" without warranties of any kind. I do not guarantee that the App will be error-free, uninterrupted, or that definitions will always be available (the dictionary API is a third-party service outside my control).</p>
+            <h2>Disclaimer of Warranties</h2>
+            <p>The App is provided "as is" without warranties of any kind. I do not guarantee that the App will be error-free, uninterrupted, or that definitions will always be available (the dictionary API is a third-party service outside my control).</p>
 
-        <h2>Limitation of Liability</h2>
-        <p>To the maximum extent permitted by law, I am not liable for any indirect, incidental, or consequential damages arising from your use of the App. My total liability shall not exceed the amount you paid for the App in the 12 months preceding any claim.</p>
+            <h2>Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, I am not liable for any indirect, incidental, or consequential damages arising from your use of the App. My total liability shall not exceed the amount you paid for the App in the 12 months preceding any claim.</p>
 
-        <h2>Changes to These Terms</h2>
-        <p>I may update these terms from time to time. Continued use of the App after changes constitutes acceptance. Material changes will be communicated through an App update.</p>
+            <h2>Changes to These Terms</h2>
+            <p>I may update these terms from time to time. Continued use of the App after changes constitutes acceptance. Material changes will be communicated through an App update.</p>
 
-        <h2>Governing Law</h2>
-        <p>These terms are governed by the laws of Australia, without regard to conflict of law provisions, and supplement Apple's standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Licensed Application End User License Agreement</a>.</p>
+            <h2>Governing Law</h2>
+            <p>These terms are governed by the laws of Australia, without regard to conflict of law provisions, and supplement Apple's standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Licensed Application End User License Agreement</a>.</p>
 
-        <h2>Contact</h2>
-        <p>Questions? Reach me at <a href="mailto:VocableSupport@icloud.com">VocableSupport@icloud.com</a>.</p>
+            <h2>Contact</h2>
+            <p>Questions? Reach me at <a href="mailto:VocableSupport@icloud.com">VocableSupport@icloud.com</a>.</p>
+        </div>
+
+        <footer>
+            <span class="copy">&copy; 2025 Angad Singh Bedi</span>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="mailto:VocableSupport@icloud.com">Contact</a>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
