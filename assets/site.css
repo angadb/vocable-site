@@ -1,0 +1,164 @@
+/* Gud apps: one stylesheet for every page. No web fonts, no scripts,
+   no trackers: system type only. Each app page sets data-app on <body>
+   to pick its color and display face. */
+:root {
+  --paper: #F5EFE3;
+  --surface: #FBF7EF;
+  --ink: #1D1C19;
+  --ink-soft: #5E5A52;
+  --line: rgba(29, 28, 25, 0.12);
+  --dot: #FF6A3D;
+  --cream: #FFF6E6;
+  --accent: #23746C;
+  --fill: #23746C;
+  --tint: #2A8C82;
+  --display: system-ui, -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  --display-weight: 600;
+  --display-stretch: 125%;
+  --display-style: normal;
+  --text: system-ui, -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1D1C19;
+    --surface: #282622;
+    --ink: #F3EEE4;
+    --ink-soft: #B4AEA2;
+    --line: rgba(243, 238, 228, 0.14);
+    --accent: #4FB8AC;
+  }
+}
+body[data-app="vocable"] {
+  --fill: #23746C; --tint: #2A8C82; --accent: #23746C;
+  --display: ui-serif, "New York", "Iowan Old Style", Georgia, serif;
+  --display-weight: 600; --display-stretch: 100%; --display-style: italic;
+}
+body[data-app="cyclesync"] {
+  --fill: #23746C; --tint: #2A8C82; --accent: #23746C;
+  --display: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --display-weight: 700; --display-stretch: 100%;
+}
+body[data-app="rungud"] {
+  --fill: #74406F; --tint: #8A4D86; --accent: #74406F;
+  --display: system-ui, -apple-system, "Avenir Next Condensed", "Arial Narrow", sans-serif;
+  --display-weight: 800; --display-stretch: 75%;
+}
+body[data-app="met"] {
+  --fill: #5B437F; --tint: #7A5CA8; --accent: #5B437F;
+  --display-weight: 600; --display-stretch: 125%;
+}
+@media (prefers-color-scheme: dark) {
+  body[data-app="vocable"], body[data-app="cyclesync"] { --accent: #4FB8AC; }
+  body[data-app="rungud"] { --accent: #C585C1; }
+  body[data-app="met"] { --accent: #B39BDF; }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.55 var(--text);
+}
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.display {
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  font-stretch: var(--display-stretch);
+  font-style: var(--display-style);
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+}
+.dot { color: var(--dot); font-style: normal; }
+.kicker {
+  font-size: 0.74rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+
+/* Navigation */
+.nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 16px; padding: 22px 0; }
+.nav .mark { font-weight: 600; font-stretch: 125%; color: var(--ink); text-decoration: none; }
+.nav .links { display: flex; flex-wrap: wrap; justify-content: flex-end; }
+.nav .links a {
+  color: var(--ink-soft); text-decoration: none; font-size: 0.92rem;
+  padding: 12px 10px; min-height: 44px; display: inline-flex; align-items: center;
+}
+.nav .links a:hover, .nav .links a[aria-current="page"] { color: var(--ink); }
+
+/* Heroes */
+.hero { padding: 56px 0 40px; }
+.hero h1 { font-size: clamp(2.4rem, 7vw, 4rem); margin: 14px 0 18px; }
+.hero p.lede { font-size: 1.2rem; color: var(--ink-soft); max-width: 34em; }
+.hero .icon { width: 96px; height: 96px; border-radius: 22px; display: block; margin-bottom: 26px; border: 1px solid var(--line); }
+.status {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 24px;
+  font-size: 0.9rem; font-weight: 600; padding: 8px 14px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--line); color: var(--ink);
+}
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ink-soft); }
+.status.live::before { background: var(--dot); }
+a.status { text-decoration: none; min-height: 44px; }
+
+/* Flat tiles: one radius, no shadows */
+.tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.tile { background: var(--surface); border-radius: 12px; padding: 22px; }
+.tile h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.tile p { color: var(--ink-soft); font-size: 0.97rem; }
+section { padding: 34px 0; }
+section > h2 { font-size: 1.7rem; margin-bottom: 18px; }
+
+/* App tiles on the home page */
+a.app {
+  display: grid; grid-template-columns: 72px 1fr; gap: 18px; align-items: center;
+  background: var(--surface); border-radius: 12px; padding: 20px;
+  color: var(--ink); text-decoration: none; min-height: 112px;
+}
+a.app:hover { outline: 1px solid var(--line); }
+a.app img { width: 72px; height: 72px; border-radius: 16px; border: 1px solid var(--line); }
+a.app .name { font-size: 1.5rem; }
+a.app .line { color: var(--ink-soft); font-size: 0.97rem; margin-top: 2px; }
+a.app .where { font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); margin-top: 8px; letter-spacing: 0.02em; }
+a.app[data-app="vocable"] .name { font-family: ui-serif, "New York", Georgia, serif; font-style: italic; font-weight: 600; }
+a.app[data-app="cyclesync"] .name { font-family: ui-rounded, "SF Pro Rounded", system-ui, sans-serif; font-weight: 700; }
+a.app[data-app="rungud"] .name { font-weight: 800; font-stretch: 75%; }
+a.app[data-app="met"] .name { font-weight: 600; font-stretch: 125%; }
+
+/* The lead card: the app's solid color with cream text, as in the apps */
+.lead {
+  background: var(--fill); color: var(--cream); border-radius: 12px;
+  padding: 26px 26px 28px; max-width: 420px; margin-top: 36px;
+}
+.lead .kicker { color: rgba(255, 246, 230, 0.88); }
+.lead .big { font-size: 2.2rem; margin: 10px 0 8px; }
+.lead p { color: rgba(255, 246, 230, 0.88); font-size: 0.98rem; }
+
+/* Long-form pages: policies and support */
+.doc { max-width: 680px; padding-bottom: 40px; }
+.doc h1 { font-size: clamp(2rem, 6vw, 2.8rem); margin: 10px 0 8px; }
+.doc .date { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 28px; }
+.doc h2 { font-size: 1.15rem; margin: 30px 0 8px; }
+.doc p, .doc li { color: var(--ink); }
+.doc p { margin-bottom: 12px; }
+.doc ul { margin: 0 0 12px 22px; }
+.doc li { margin-bottom: 6px; }
+.doc .highlight-box, .doc .short {
+  background: var(--surface); border-radius: 12px; padding: 18px 20px; margin: 18px 0 8px;
+}
+.doc .highlight-box p, .doc .short p { margin: 0; font-weight: 600; }
+
+/* Footer: the maker's line */
+footer { border-top: 1px solid var(--line); margin-top: 40px; padding: 28px 0 44px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: flex-end; }
+footer .maker { font-weight: 600; font-stretch: 125%; }
+footer .family { color: var(--ink-soft); font-size: 0.85rem; }
+footer .links a { color: var(--ink-soft); font-size: 0.9rem; text-decoration: none; padding: 12px 0 12px 18px; display: inline-block; }
+footer .links a:hover { color: var(--ink); }
+
+@media (max-width: 640px) {
+  .tiles { grid-template-columns: 1fr; }
+  .hero { padding-top: 32px; }
+  footer { flex-direction: column; align-items: flex-start; }
+  footer .links a { padding-left: 0; padding-right: 18px; }
+}
