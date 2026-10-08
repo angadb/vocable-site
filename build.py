@@ -84,7 +84,7 @@ APPS = {
         "status": "Coming soon",
         "live": False,
         "email": "VocableSupport@icloud.com",
-        "lead": ("Due today", "4 people", "Start with Priya, then 3 more."),
+        "lead": ("Due today", "4 people", "Start with Sneh, then 3 more."),
         "features": [
             ("Say it, don't file it", "Speak or type a few lines. Apple Intelligence sorts them into a card on your iPhone."),
             ("A face you'll recognise", "Describe someone and your iPhone draws them. Or use their initials."),
