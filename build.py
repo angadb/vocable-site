@@ -24,6 +24,7 @@ APPS = {
         "lede": "One word a day with its meaning and an example. Earlier words come back when you are due to forget them. Every feature is free.",
         "status": "On the App Store",
         "live": True,
+        "store_id": "6761419750",
         "email": "VocableSupport@icloud.com",
         "lead": ("Today's word", "serendipity", "The occurrence of events by chance in a happy or beneficial way."),
         "features": [
@@ -120,7 +121,7 @@ def page(path, title, description, body, app=None, nav=()):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{escape(title)}</title>
 <meta name="description" content="{escape(description)}">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light dark">{store_banner(app)}
 <link rel="icon" href="{icon}">
 <link rel="apple-touch-icon" href="{icon}">
 <meta property="og:title" content="{escape(title)}">
@@ -152,6 +153,19 @@ def page(path, title, description, body, app=None, nav=()):
     target = ROOT / path
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(html)
+
+
+def store_banner(app):
+    """Safari's own banner offering the app, on pages for an app that is on sale."""
+    store_id = APPS.get(app, {}).get("store_id") if app else None
+    return f'\n<meta name="apple-itunes-app" content="app-id={store_id}">' if store_id else ""
+
+
+def status_pill(info):
+    if info.get("store_id"):
+        return (f'<a class="status live" href="https://apps.apple.com/app/id{info["store_id"]}">'
+                f'Get it on the App Store</a>')
+    return f'<div class="status{" live" if info["live"] else ""}">{escape(info["status"])}</div>'
 
 
 def footer_links(app, up):
@@ -225,7 +239,7 @@ def app_home(key):
 <div class="kicker">{escape(info["kicker"])}</div>
 <h1 class="display">{dotted(info["name"])}</h1>
 <p class="lede">{escape(info["lede"])}</p>
-<div class="status{' live' if info['live'] else ''}">{escape(info["status"])}</div>
+{status_pill(info)}
 <div class="lead" role="img" aria-label="How the app looks: {escape(kicker)}, {escape(big)}. {escape(small)}">
 <div class="kicker">{escape(kicker)}</div>
 <div class="big display">{dotted(big)}</div>
