@@ -35,7 +35,7 @@ APPS = {
             ("Works offline", "Every word the app ships with has its meaning built in."),
             ("Reminders you choose", "The word in the morning, at the time you pick. Everything else stays quiet unless you turn it on."),
         ],
-        "data": "No account, no ads, no tracking. Your words stay on your phone, or in your own iCloud if you turn sync on. Meanings for the app's own words are built in. Looking up any other word asks the Free Dictionary API, which is sent that word and nothing else.",
+        "data": "No account, no ads, no tracking. Your words stay on your phone and in your own iCloud, where sync is on unless you turn it off in Settings. Meanings for the app's own words are built in. Looking up any other word asks the Free Dictionary API, which is sent that word and nothing else.",
         "extra": ("Free, with a tip jar", "There is no subscription and nothing to unlock. An optional tip inside the app helps cover the developer account fee."),
         "has_terms": True,
     },
@@ -215,7 +215,7 @@ def home():
 <section>
 <h2 class="display">House rules</h2>
 <div class="tiles">
-<div class="tile"><h3>Your data stays yours</h3><p>No accounts and no servers. What you put in an app stays on your phone, or in your own iCloud where an app offers sync.</p></div>
+<div class="tile"><h3>Your data stays yours</h3><p>No accounts and no servers of mine. What you put in an app stays on your phone, or in your own iCloud where an app offers sync; the only exceptions are a Vocable word you look up, which is sent to the Free Dictionary API, and the web search Vocable opens when you tap Search Web.</p></div>
 <div class="tile"><h3>No ads, no tracking</h3><p>None of the apps contain analytics, advertising or anything that follows you around.</p></div>
 <div class="tile"><h3>One look, done properly</h3><p>The apps follow your iPhone's text size, appearance and accessibility settings instead of inventing their own.</p></div>
 <div class="tile"><h3>Made by one person</h3><p>{MAKER} designs and builds all four. No team, no investors, nobody to sell you to.</p></div>
