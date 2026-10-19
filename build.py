@@ -68,7 +68,7 @@ APPS = {
         "email": "VocableSupport@icloud.com",
         "lead": ("Today's run", "8 km easy", "Conversational pace. If you can't chat, you're racing."),
         "features": [
-            ("Reads, never writes", "Your running workouts come from Apple Health. Rungud only reads them."),
+            ("Reads, never writes", "Your running and walking workouts, with their distance and heart rate, and your VO2 max come from Apple Health. Rungud only reads them."),
             ("A plan from rules", "Phases, weekly distance and paces worked out on the phone. No AI and no server."),
             ("It adjusts to you", "Missed a run or ran long? The weeks ahead change to fit."),
             ("Your data, out", "Export your runs as CSV or JSON, or as a summary you can hand to whoever coaches you."),
