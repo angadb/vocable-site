@@ -1,7 +1,7 @@
 # Gud apps site: agent instructions
 
-The public website for the owner's four iPhone apps (Vocable, CycleSync,
-Rungud, Met), served by GitHub Pages from this repo's `main` branch at
+The public website for the owner's four iPhone apps (Talkgud (was Vocable), CycleSync,
+Rungud, Minglegud (was Met)), served by GitHub Pages from this repo's `main` branch at
 `https://angadb.github.io/vocable-site/`. Read `~/design-guide/AGENTS.md`
 first for the brand and how the owner works.
 
@@ -25,10 +25,10 @@ first for the brand and how the owner works.
 ## Rules
 
 - Pushing to `main` publishes. Ask the owner before pushing.
-- Vocable is in the App Store and its listing links to `privacy.html` and
+- Talkgud is in the App Store and its listing links to `privacy.html` and
   `terms.html` at the site root. Those two addresses must keep working;
   they redirect to `vocable/`.
-- Vocable's legal text describes the shipped app. Do not change what it
+- Talkgud's legal text describes the shipped app. Do not change what it
   says without the owner. The other three policies describe unreleased
   apps and must be checked against each app before its release.
 - A policy may only claim what the app's code does. Check before
@@ -38,17 +38,20 @@ first for the brand and how the owner works.
 
 ## State (2026-10-08)
 
+Update 2026-10-21: page text now says Talkgud and Minglegud. Paths, icon file names
+and the `APPS` keys still use `vocable` and `met`, so every address keeps working.
+
 Branch `gud-apps` holds the rebuild as a multi-app site in the Gud apps
 brand. It is not merged and not pushed. Checked by rendering in headless
-Chrome: the home page, the Met page, the Vocable page at a narrow width,
+Chrome: the home page, the Minglegud page, the Talkgud page at a narrow width,
 and two policy pages. Dark mode was written but not looked at.
 
 Open decisions for the owner:
 - Where the site lives. Other apps' pages currently sit under a
   `vocable-site` address. A custom domain would fix that and GitHub
   redirects the old addresses to it.
-- A contact address for CycleSync, Rungud and Met. They use Vocable's
+- A contact address for CycleSync, Rungud and Minglegud. They use Talkgud's
   for now.
-- The App Store link for Vocable (none is on the site yet).
-- The Vocable page shows the new book icon, which is not in the App
+- The App Store link for Talkgud (none is on the site yet).
+- The Talkgud page shows the new book icon, which is not in the App
   Store build yet.

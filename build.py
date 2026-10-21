@@ -18,7 +18,7 @@ UPDATED = "8 October 2026"
 
 APPS = {
     "vocable": {
-        "name": "Vocable",
+        "name": "Talkgud",
         "kicker": "A word a day",
         "line": "One good word each morning, and it comes back before you forget it.",
         "lede": "One word a day with its meaning and an example. Earlier words come back when you are due to forget them. Every feature is free.",
@@ -78,10 +78,10 @@ APPS = {
         "has_terms": False,
     },
     "met": {
-        "name": "Met",
+        "name": "Minglegud",
         "kicker": "Remember the people you meet",
-        "line": "Say who you met. Met keeps the name, the face and how you know them.",
-        "lede": "Tell it who you met, the way you'd tell a friend. Met sorts that into a card, gives it a face you'll recognise, and quizzes you before the name slips.",
+        "line": "Say who you met. Minglegud keeps the name, the face and how you know them.",
+        "lede": "Tell it who you met, the way you'd tell a friend. Minglegud sorts that into a card, gives it a face you'll recognise, and quizzes you before the name slips.",
         "status": "Coming soon",
         "live": False,
         "email": "VocableSupport@icloud.com",
@@ -215,14 +215,14 @@ def home():
 <section>
 <h2 class="display">House rules</h2>
 <div class="tiles">
-<div class="tile"><h3>Your data stays yours</h3><p>No accounts and no servers of mine. What you put in an app stays on your phone, or in your own iCloud where an app offers sync; the only exceptions are a Vocable word you look up, which is sent to the Free Dictionary API, and the web search Vocable opens when you tap Search Web.</p></div>
+<div class="tile"><h3>Your data stays yours</h3><p>No accounts and no servers of mine. What you put in an app stays on your phone, or in your own iCloud where an app offers sync; the only exceptions are a Talkgud word you look up, which is sent to the Free Dictionary API, and the web search Talkgud opens when you tap Search Web.</p></div>
 <div class="tile"><h3>No ads, no tracking</h3><p>None of the apps contain analytics, advertising or anything that follows you around.</p></div>
 <div class="tile"><h3>One look, done properly</h3><p>The apps follow your iPhone's text size, appearance and accessibility settings instead of inventing their own.</p></div>
 <div class="tile"><h3>Made by one person</h3><p>{MAKER} designs and builds all four. No team, no investors, nobody to sell you to.</p></div>
 </div>
 </section>
 </main>"""
-    page("index.html", "Gud apps", "Four small iPhone apps by Angad Bedi: Vocable, CycleSync, Rungud and Met. No accounts, no ads, no tracking.",
+    page("index.html", "Gud apps", "Four small iPhone apps by Angad Bedi: Talkgud, CycleSync, Rungud and Minglegud. No accounts, no ads, no tracking.",
          body, nav=[(APPS[k]["name"], f"{k}/index.html", False) for k in ORDER])
 
 
@@ -320,9 +320,9 @@ def main():
             date, inner = fragment(f"{key}-terms.html")
             doc(key, "terms.html", "Terms & Conditions", date, inner, f'Terms for using {info["name"]}.')
         support(key)
-    # The shipped Vocable listing links to these two addresses. Keep them working.
-    redirect("privacy.html", "vocable/privacy.html", "Vocable privacy policy")
-    redirect("terms.html", "vocable/terms.html", "Vocable terms")
+    # The shipped Talkgud listing links to these two addresses. Keep them working.
+    redirect("privacy.html", "vocable/privacy.html", "Talkgud privacy policy")
+    redirect("terms.html", "vocable/terms.html", "Talkgud terms")
     print("built", sum(1 for _ in ROOT.rglob("*.html")), "pages")
 
 
