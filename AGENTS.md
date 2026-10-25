@@ -1,7 +1,7 @@
 # Gud apps site: agent instructions
 
-The public website for the owner's four iPhone apps (Talkgud (was Vocable), CycleSync,
-Rungud, Minglegud (was Met)), served by GitHub Pages from this repo's `main` branch at
+The public website for the owner's seven iPhone apps (Talkgud (was Vocable), Lovegud (was CycleSync),
+Rungud, Minglegud (was Met), Gymgud, Bolgud, Eatgud), served by GitHub Pages from this repo's `main` branch at
 `https://angadb.github.io/vocable-site/`. Read `~/design-guide/AGENTS.md`
 first for the brand and how the owner works.
 
@@ -29,29 +29,39 @@ first for the brand and how the owner works.
   `terms.html` at the site root. Those two addresses must keep working;
   they redirect to `vocable/`.
 - Talkgud's legal text describes the shipped app. Do not change what it
-  says without the owner. The other three policies describe unreleased
+  says without the owner. The other policies describe unreleased
   apps and must be checked against each app before its release.
 - A policy may only claim what the app's code does. Check before
   writing "no network requests" or similar.
 - No em dashes. No emoji. Dry, kind voice; plain in policies.
-- CycleSync: nothing here says "period".
+- Lovegud: nothing here says "period".
+- Names: Lovegud is the visible name, but the `APPS` key, folder `cyclesync/`, fragments
+  `content/cyclesync-*` and `assets/icons/cyclesync.png` keep the old name so every address works
+  (same for `vocable` and `met`).
+- A page's date (the first-line comment of its fragment) changes only when that page's text changes.
 
-## State (2026-10-08)
+## State (2026-10-25)
 
-Update 2026-10-21: page text now says Talkgud and Minglegud. Paths, icon file names
-and the `APPS` keys still use `vocable` and `met`, so every address keeps working.
+Seven apps, three pages each (landing, privacy, support; Talkgud also terms), all built by
+`build.py`. New this session: Gymgud, Bolgud, Eatgud; Lovegud renamed; Lovegud, Rungud and
+Minglegud policies rewritten from their code. Talkgud's pages and the root `privacy.html`
+and `terms.html` redirects are unchanged. Local commits only, nothing pushed.
 
-Branch `gud-apps` holds the rebuild as a multi-app site in the Gud apps
-brand. It is not merged and not pushed. Checked by rendering in headless
-Chrome: the home page, the Minglegud page, the Talkgud page at a narrow width,
-and two policy pages. Dark mode was written but not looked at.
+Policies were checked by reading the code of each app (Lovegud, Rungud, Minglegud, Gymgud,
+Bolgud, Eatgud) on 2026-10-25, not by running them. Gymgud policy follows a build that is
+"compiled and engine-tested only". Seen rendered in headless Chrome: home (narrow and wide),
+the Lovegud, Gymgud, Bolgud and Eatgud pages (narrow; Lovegud and Gymgud also wide), the
+Gymgud and Lovegud privacy pages. Not looked at: dark mode (written, not seen), the support
+pages and the Rungud, Minglegud, Talkgud pages after the change.
 
 Open decisions for the owner:
-- Where the site lives. Other apps' pages currently sit under a
-  `vocable-site` address. A custom domain would fix that and GitHub
-  redirects the old addresses to it.
-- A contact address for CycleSync, Rungud and Minglegud. They use Talkgud's
-  for now.
-- The App Store link for Talkgud (none is on the site yet).
-- The Talkgud page shows the new book icon, which is not in the App
-  Store build yet.
+- Contact address: all seven apps still use `VocableSupport@icloud.com`.
+- Lovegud status pill stays "Coming soon" (is 1.0 live?). Lovegud's site colour is still cobalt
+  while the app now uses ink chrome.
+- Where the site lives (custom domain or the `vocable-site` address).
+- Talkgud App Store link and icon (see earlier note: site shows the new book icon).
+- App issues found while reading code, not fixed here: Lovegud setup and Calendar say
+  "period" in app text; Minglegud's counts screen and "Include my numbers" switch are
+  DEBUG only while the feedback email includes the counts by default; Gymgud has no in-app
+  erase and leaves its iCloud copy after delete; Bolgud content is unreviewed and no audio
+  ships; Eatgud "Erase everything" keeps settings.

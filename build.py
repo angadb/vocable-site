@@ -14,7 +14,6 @@ BASE = "https://angadb.github.io/vocable-site/"
 MAKER = "Angad Bedi"
 LEGAL_NAME = "Angad Singh Bedi"
 YEAR = "2026"
-UPDATED = "8 October 2026"
 
 APPS = {
     "vocable": {
@@ -40,7 +39,7 @@ APPS = {
         "has_terms": True,
     },
     "cyclesync": {
-        "name": "CycleSync",
+        "name": "Lovegud",
         "kicker": "A daily cue for partners",
         "line": "One quiet cue a day for the partner of someone with a cycle.",
         "lede": "A discreet helper for partners. It tells you what to offer today, shows roughly where the month is going, and keeps a short playbook written from evidence.",
@@ -52,9 +51,11 @@ APPS = {
             ("One cue a day", "A single suggestion for what to offer today. It never tells you how anyone feels."),
             ("A calendar that admits doubt", "The next start is shown as a window, estimated from the dates you have logged."),
             ("A playbook from evidence", "Short, practical and sourced. It includes what you need too."),
-            ("Discreet by design", "Lock it with Face ID. Widgets and notifications never show dates or counts."),
+            ("Phases you can move", "Change how long Comfort, Romance and Steady last. Patience stays counted back from the next start."),
+            ("Discreet by design", "Lock it with Face ID. Widgets, notifications and Siri never show dates or counts."),
+            ("Without opening it", "Widgets, a Lock Screen control and Shortcuts show the day's cue or log a new start."),
         ],
-        "data": "No account and no network connection at all. The dates and settings you enter stay on your phone. A backup is a file you export yourself and keep wherever you like.",
+        "data": "No account, no analytics and no network requests of its own. The dates and settings you enter stay on your phone. A backup is a file you export yourself and keep wherever you like.",
         "extra": None,
         "has_terms": False,
     },
@@ -73,7 +74,7 @@ APPS = {
             ("It adjusts to you", "Missed a run or ran long? The weeks ahead change to fit."),
             ("Your data, out", "Export your runs as CSV or JSON, or as a summary you can hand to whoever coaches you."),
         ],
-        "data": "No account and no network connection. Health data is read on your phone and stays there. Nothing is used for advertising, and nothing is shared unless you export a file yourself.",
+        "data": "No account and no network requests of its own. Health data is read on your phone and stays there. Nothing is used for advertising, and nothing is shared unless you export a file yourself.",
         "extra": None,
         "has_terms": False,
     },
@@ -92,12 +93,72 @@ APPS = {
             ("How you know them", "Every person has a trail: through Alex, through work. Circles hold the rest."),
             ("Review before it fades", "Short spaced reviews for names, faces and the facts worth keeping."),
         ],
-        "data": "No account and no network connection. What you note about people stays on your iPhone. The microphone is used only when you tap it, and what you say is transcribed on the phone and not kept.",
+        "data": "No account, no analytics and no network requests of its own. What you note about people stays on your iPhone. The microphone is used only when you tap it, and what you say is transcribed on the phone and not kept.",
+        "extra": None,
+        "has_terms": False,
+    },
+    "gymgud": {
+        "name": "Gymgud",
+        "kicker": "A gym focus for each day, beside your runs",
+        "line": "A lift log that plans your gym days around your runs.",
+        "lede": "Gymgud logs every set, shows whether each lift is moving, and says what to train today in plain words, with a day off legs before a hard run. It works alongside Rungud, or on its own.",
+        "status": "Coming soon",
+        "live": False,
+        "email": "VocableSupport@icloud.com",
+        "lead": ("Today", "Upper back and chest", "Hard run tomorrow, so no legs."),
+        "features": [
+            ("Logs every set", "Weight and reps, or seconds. An optional rest timer and one tap to undo a set."),
+            ("Shows what is moving", "Each lift is marked when it has stopped moving, with a chart of its last sessions."),
+            ("A gym week around your runs", "Runs come from Rungud, from three answers, or from your Apple Health runs. Or from nowhere: it works without them."),
+            ("Saves to Apple Health", "Each finished session is saved as a strength workout, with start and end time only."),
+            ("Your data, out", "A spreadsheet with a row per set, or a backup file with photos. Both go only where you send them."),
+        ],
+        "data": "No account, no analytics and no server of mine. Your lift log stays on your phone, with a restore copy in your own iCloud. It reads running workouts and body weight from Apple Health, and saves each session to it. If Rungud is installed, the two share your week through a folder on the phone.",
+        "extra": None,
+        "has_terms": False,
+    },
+    "bolgud": {
+        "name": "Bolgud",
+        "kicker": "Learn to read Punjabi",
+        "line": "Learn to read Gurmukhi, then the words, a few cards a day.",
+        "lede": "Bolgud teaches adults to read Gurmukhi, then core Punjabi words and phrases, a few cards a day. Letters come first. The words can wait.",
+        "status": "Coming soon",
+        "live": False,
+        "email": "VocableSupport@icloud.com",
+        "lead": ("Today's lesson", "5 new", "Letters first. The words can wait."),
+        "features": [
+            ("Read the script", "57 letter cards in lesson order, each with how it sounds and an example word."),
+            ("Words unlock with letters", "A word appears only once you have met every letter in it."),
+            ("Cards come back on schedule", "Say Again, Hard, Good or Easy and the card returns when you are due to forget it."),
+            ("Then a spoken track", "300 core words, plus phrases, verbs and folk sayings."),
+            ("A letter a day on your Home Screen", "An optional widget, and an optional daily reminder that never says what you are learning."),
+        ],
+        "data": "No account, no ads, no tracking and no network. Your progress stays on your phone. It does not use the microphone, camera or Health.",
+        "extra": None,
+        "has_terms": False,
+    },
+    "eatgud": {
+        "name": "Eatgud",
+        "kicker": "Log what you eat from a photo",
+        "line": "Take a photo of your plate. Eatgud does the sums.",
+        "lede": "Eatgud names the foods in a photo of your meal, on your iPhone, and works out calories and macros from a table inside the app. You check each portion before anything is logged. It is not a diet app.",
+        "status": "Coming soon",
+        "live": False,
+        "email": "VocableSupport@icloud.com",
+        "lead": ("Today", "1,240 calories", "3 meals, 2 estimates."),
+        "features": [
+            ("Photo to plate", "Apple's on-device model names the foods. Without Apple Intelligence, add them by hand."),
+            ("You stay in charge", "Swap a food, change a portion, or add one. Nothing is logged until you say so."),
+            ("Numbers from a table", "Approximate values for 175 common foods, stored in the app. Not from the photo and not from the internet."),
+            ("It learns your portions", "Correct a large bowl of rice once and the next one starts where you left it."),
+            ("Today, Meals, Trends", "Totals, a week at a glance, and 7 and 30 day averages. Daily targets are optional and nothing is graded."),
+        ],
+        "data": "No account, no ads, no tracking and no network. Your meals and photos stay on your phone, and the photo is read on the phone. It does not use Apple Health.",
         "extra": None,
         "has_terms": False,
     },
 }
-ORDER = ["vocable", "cyclesync", "rungud", "met"]
+ORDER = ["vocable", "cyclesync", "rungud", "met", "gymgud", "bolgud", "eatgud"]
 
 
 def dotted(text):
@@ -204,7 +265,7 @@ def home():
 """
     body = f"""<main>
 <header class="hero">
-<div class="kicker">Four small apps for iPhone</div>
+<div class="kicker">Seven small apps for iPhone</div>
 <h1 class="display">Apps that mind their own business<span class="dot" aria-hidden="true">.</span></h1>
 <p class="lede">Each one does a single job, keeps what you tell it on your phone, and then gets out of the way.</p>
 </header>
@@ -218,11 +279,11 @@ def home():
 <div class="tile"><h3>Your data stays yours</h3><p>No accounts and no servers of mine. What you put in an app stays on your phone, or in your own iCloud where an app offers sync; the only exceptions are a Talkgud word you look up, which is sent to the Free Dictionary API, and the web search Talkgud opens when you tap Search Web.</p></div>
 <div class="tile"><h3>No ads, no tracking</h3><p>None of the apps contain analytics, advertising or anything that follows you around.</p></div>
 <div class="tile"><h3>One look, done properly</h3><p>The apps follow your iPhone's text size, appearance and accessibility settings instead of inventing their own.</p></div>
-<div class="tile"><h3>Made by one person</h3><p>{MAKER} designs and builds all four. No team, no investors, nobody to sell you to.</p></div>
+<div class="tile"><h3>Made by one person</h3><p>{MAKER} designs and builds all seven. No team, no investors, nobody to sell you to.</p></div>
 </div>
 </section>
 </main>"""
-    page("index.html", "Gud apps", "Four small iPhone apps by Angad Bedi: Talkgud, CycleSync, Rungud and Minglegud. No accounts, no ads, no tracking.",
+    page("index.html", "Gud apps", "Seven small iPhone apps by Angad Bedi: Talkgud, Lovegud, Rungud, Minglegud, Gymgud, Bolgud and Eatgud. No accounts, no ads, no tracking.",
          body, nav=[(APPS[k]["name"], f"{k}/index.html", False) for k in ORDER])
 
 
@@ -315,7 +376,7 @@ def main():
         date, inner = fragment(f"{key}-privacy.html")
         mail = info["email"]
         inner = inner.replace("{{EMAIL}}", f'<a href="mailto:{mail}">{mail}</a>')
-        doc(key, "privacy.html", "Privacy Policy", date, inner, f'What {info["name"]} does with your data: it stays on your device.')
+        doc(key, "privacy.html", "Privacy Policy", date, inner, f'What {info["name"]} does with your data' + (": it stays on your device." if key == "vocable" else "."))
         if info["has_terms"]:
             date, inner = fragment(f"{key}-terms.html")
             doc(key, "terms.html", "Terms & Conditions", date, inner, f'Terms for using {info["name"]}.')
