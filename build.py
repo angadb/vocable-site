@@ -287,6 +287,30 @@ def home():
          body, nav=[(APPS[k]["name"], f"{k}/index.html", False) for k in ORDER])
 
 
+SHORT = {
+    "vocable": "A word a day, and it comes back.",
+    "cyclesync": "A daily cue for partners.",
+    "rungud": "A running plan from the runs you already do.",
+    "met": "Remember the people you meet.",
+    "gymgud": "A gym week around your runs.",
+    "bolgud": "Learn to read Punjabi.",
+    "eatgud": "Log what you eat from a photo.",
+}
+
+
+def also_from(key):
+    """Quiet list of the other Gud apps on an app page. Gymgud and Rungud lead with each other."""
+    keys = [k for k in ORDER if k != key]
+    pair = {"gymgud": "rungud", "rungud": "gymgud"}.get(key)
+    if pair:
+        keys.remove(pair)
+        keys.insert(0, pair)
+    items = "".join(
+        f'<li><a href="../{k}/index.html"><strong>{escape(APPS[k]["name"])}</strong></a>: {escape(SHORT[k])}</li>\n'
+        for k in keys)
+    return f'<section>\n<h2 class="display">Also from Gud apps</h2>\n<p>Made by the same person, with the same rules: no accounts, no ads, no tracking.</p>\n<ul>\n{items}</ul>\n</section>'
+
+
 def app_home(key):
     info = APPS[key]
     kicker, big, small = info["lead"]
@@ -317,6 +341,7 @@ def app_home(key):
 <h2 class="display">Your data</h2>
 <p>{escape(info["data"])} The full version is in the <a href="privacy.html">privacy policy</a>.</p>
 </section>
+{also_from(key)}
 </main>"""
     page(f"{key}/index.html", f'{info["name"]}: {info["kicker"]}', info["lede"], body, app=key, nav=app_nav(key, "index.html"))
 
