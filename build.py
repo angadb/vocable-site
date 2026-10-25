@@ -24,7 +24,7 @@ APPS = {
         "status": "On the App Store",
         "live": True,
         "store_id": "6761419750",
-        "email": "VocableSupport@icloud.com",
+        "email": "GudApps@icloud.com",
         "lead": ("Today's word", "serendipity", "The occurrence of events by chance in a happy or beneficial way."),
         "features": [
             ("A word every morning", "Its meaning, an example, and a button to hear it said. No repeats until you have seen them all."),
@@ -45,7 +45,7 @@ APPS = {
         "lede": "A discreet helper for partners. It tells you what to offer today, shows roughly where the month is going, and keeps a short playbook written from evidence.",
         "status": "Coming soon",
         "live": False,
-        "email": "VocableSupport@icloud.com",
+        "email": "GudApps@icloud.com",
         "lead": ("Today", "Comfort", "A warm drink and an early night are on offer. No questions asked."),
         "features": [
             ("One cue a day", "A single suggestion for what to offer today. It never tells you how anyone feels."),
@@ -66,7 +66,7 @@ APPS = {
         "lede": "Rungud reads your runs from Apple Health, builds a plan from plain rules, and adjusts the weeks ahead to what you actually ran. No coach in the cloud.",
         "status": "Coming soon",
         "live": False,
-        "email": "VocableSupport@icloud.com",
+        "email": "GudApps@icloud.com",
         "lead": ("Today's run", "8 km easy", "Conversational pace. If you can't chat, you're racing."),
         "features": [
             ("Reads, never writes", "Your running and walking workouts, with their distance and heart rate, and your VO2 max come from Apple Health. Rungud only reads them."),
@@ -85,7 +85,7 @@ APPS = {
         "lede": "Tell it who you met, the way you'd tell a friend. Minglegud sorts that into a card, gives it a face you'll recognise, and quizzes you before the name slips.",
         "status": "Coming soon",
         "live": False,
-        "email": "VocableSupport@icloud.com",
+        "email": "GudApps@icloud.com",
         "lead": ("Due today", "4 people", "Start with Sneh, then 3 more."),
         "features": [
             ("Say it, don't file it", "Speak or type a few lines. Apple Intelligence sorts them into a card on your iPhone."),
@@ -104,7 +104,7 @@ APPS = {
         "lede": "Gymgud logs every set, shows whether each lift is moving, and says what to train today in plain words, with a day off legs before a hard run. It works alongside Rungud, or on its own.",
         "status": "Coming soon",
         "live": False,
-        "email": "VocableSupport@icloud.com",
+        "email": "GudApps@icloud.com",
         "lead": ("Today", "Upper back and chest", "Hard run tomorrow, so no legs."),
         "features": [
             ("Logs every set", "Weight and reps, or seconds. An optional rest timer and one tap to undo a set."),
@@ -124,7 +124,7 @@ APPS = {
         "lede": "Bolgud teaches adults to read Gurmukhi, then core Punjabi words and phrases, a few cards a day. Letters come first. The words can wait.",
         "status": "Coming soon",
         "live": False,
-        "email": "VocableSupport@icloud.com",
+        "email": "GudApps@icloud.com",
         "lead": ("Today's lesson", "5 new", "Letters first. The words can wait."),
         "features": [
             ("Read the script", "57 letter cards in lesson order, each with how it sounds and an example word."),
@@ -144,7 +144,7 @@ APPS = {
         "lede": "Eatgud names the foods in a photo of your meal, on your iPhone, and works out calories and macros from a table inside the app. You check each portion before anything is logged. It is not a diet app.",
         "status": "Coming soon",
         "live": False,
-        "email": "VocableSupport@icloud.com",
+        "email": "GudApps@icloud.com",
         "lead": ("Today", "1,240 calories", "3 meals, 2 estimates."),
         "features": [
             ("Photo to plate", "Apple's on-device model names the foods. Without Apple Intelligence, add them by hand."),

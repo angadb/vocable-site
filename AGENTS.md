@@ -55,7 +55,7 @@ Gymgud and Lovegud privacy pages. Not looked at: dark mode (written, not seen), 
 pages and the Rungud, Minglegud, Talkgud pages after the change.
 
 Open decisions for the owner:
-- Contact address: all seven apps still use `VocableSupport@icloud.com`.
+- Contact address: all seven apps still use `GudApps@icloud.com`.
 - Lovegud status pill stays "Coming soon" (is 1.0 live?). Lovegud's site colour is still cobalt
   while the app now uses ink chrome.
 - Where the site lives (custom domain or the `vocable-site` address).
